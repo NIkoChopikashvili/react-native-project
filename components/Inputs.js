@@ -10,7 +10,7 @@ export default function Inputs({
   setEmail,
 }) {
   const emailErrors = () => {
-    return !email.includes("@");
+    return !email.includes("@") || !email.includes(".com");
   };
 
   const passwordErrors = () => {

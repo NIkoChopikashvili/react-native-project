@@ -1,4 +1,10 @@
-import { View, Text, StyleSheet, TouchableHighlight } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableHighlight,
+  Alert,
+} from "react-native";
 import axios from "axios";
 
 const Footer = ({ email, name, password }) => {
@@ -7,6 +13,13 @@ const Footer = ({ email, name, password }) => {
       <TouchableHighlight
         style={styles.registerButton}
         onPress={async () => {
+          if (name === "") {
+            Alert.alert("name is required");
+          } else if (!email.includes("@") || !email.includes(".com")) {
+            Alert.alert("email is invalid");
+          } else if (password === "") {
+            Alert.alert("password is required");
+          }
           const response = await axios.post("localhost:5000/api/register", {
             name,
             password,
