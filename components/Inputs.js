@@ -1,5 +1,5 @@
-import { View, StyleSheet } from "react-native";
-import { TextInput } from "react-native-paper";
+import { View, StyleSheet, Text } from "react-native";
+import { TextInput, HelperText } from "react-native-paper";
 
 export default function Inputs({
   name,
@@ -9,6 +9,24 @@ export default function Inputs({
   email,
   setEmail,
 }) {
+  const emailErrors = () => {
+    return !email.includes("@");
+  };
+
+  const passwordErrors = () => {
+    if (password === "") {
+      return true;
+    }
+    return false;
+  };
+
+  const nameErrors = () => {
+    if (name === "") {
+      return true;
+    }
+    return false;
+  };
+
   return (
     <View style={styles.inputsParent}>
       <TextInput
@@ -17,12 +35,18 @@ export default function Inputs({
         onChangeText={setName}
         placeholder="Name"
       />
+      <HelperText type="error" visible={nameErrors()}>
+        Name should not be empty!
+      </HelperText>
       <TextInput
         style={styles.emailInput}
         value={email}
         onChangeText={setEmail}
         placeholder="Email"
       />
+      <HelperText type="error" visible={emailErrors()}>
+        Email address is invalid!
+      </HelperText>
       <TextInput
         secureTextEntry={true}
         style={styles.passwordInput}
@@ -30,6 +54,9 @@ export default function Inputs({
         onChangeText={setPassword}
         placeholder="Password"
       />
+      <HelperText type="error" visible={passwordErrors()}>
+        Password should not be empty
+      </HelperText>
     </View>
   );
 }
