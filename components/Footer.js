@@ -2,17 +2,45 @@ import {
   View,
   Text,
   StyleSheet,
-  TouchableHighlight,
+  TouchableOpacity,
   Alert,
+  Animated,
 } from "react-native";
 import axios from "axios";
+import react, { useState } from "react";
 
-const Footer = ({ email, name, password }) => {
+const AnimatedTouchable = Animated.createAnimatedComponent(TouchableOpacity);
+
+const Footer = ({ email, name, password, navigation }) => {
+  const [scale] = useState(new Animated.Value(1));
+
   return (
     <View style={styles.registerBtnView}>
-      <TouchableHighlight
-        style={styles.registerButton}
-        onPress={async () => {
+      <AnimatedTouchable
+        activeOpacity={1}
+        style={{
+          marginTop: 60,
+          backgroundColor: "purple",
+          width: 400,
+          height: 70,
+          alignItems: "center",
+          justifyContent: "center",
+          borderRadius: 200,
+          transform: [{ scale }],
+        }}
+        onPressOut={() => {
+          Animated.timing(scale, {
+            duration: 300,
+            toValue: 1,
+            useNativeDriver: true,
+          }).start();
+        }}
+        onPressIn={async () => {
+          Animated.timing(scale, {
+            duration: 200,
+            toValue: 0.85,
+            useNativeDriver: true,
+          }).start();
           if (name === "") {
             Alert.alert("name is required");
           } else if (!email.includes("@") || !email.includes(".com")) {
@@ -20,20 +48,23 @@ const Footer = ({ email, name, password }) => {
           } else if (password === "") {
             Alert.alert("password is required");
           }
-          const response = await axios.post("localhost:5000/api/register", {
-            name,
-            password,
-            email,
-          });
+          // const response = await axios.post(
+          //   "http://localhost:5000/api/register",
+          //   {
+          //     name,
+          //     password,
+          //     email,
+          //   }
+          // );
 
-          if (response.data.message === "success") {
-            alert("Account Created Succesfuly");
-            console.log("Account Created Succesfuly");
-          }
+          // if (response.data.message === "success") {
+          //   alert("Account Created Succesfuly");
+          //   console.log("Account Created Succesfuly");
+          // }
         }}
       >
         <Text style={styles.registerButtonText}>Register</Text>
-      </TouchableHighlight>
+      </AnimatedTouchable>
     </View>
   );
 };
@@ -47,6 +78,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     borderRadius: 200,
+    // transform: [{ scale }],
   },
   registerButtonText: {
     color: "white",

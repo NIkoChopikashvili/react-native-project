@@ -1,6 +1,5 @@
 import { View, StyleSheet, Text } from "react-native";
 import { TextInput, HelperText } from "react-native-paper";
-
 export default function Inputs({
   name,
   setName,
