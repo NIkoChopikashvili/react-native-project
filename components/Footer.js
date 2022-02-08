@@ -28,19 +28,7 @@ const Footer = ({ email, name, password, navigation }) => {
           borderRadius: 200,
           transform: [{ scale }],
         }}
-        onPressOut={() => {
-          Animated.timing(scale, {
-            duration: 300,
-            toValue: 1,
-            useNativeDriver: true,
-          }).start();
-        }}
-        onPressIn={async () => {
-          Animated.timing(scale, {
-            duration: 200,
-            toValue: 0.85,
-            useNativeDriver: true,
-          }).start();
+        onpress={() => {
           if (name === "") {
             Alert.alert("name is required");
           } else if (!email.includes("@") || !email.includes(".com")) {
@@ -61,6 +49,20 @@ const Footer = ({ email, name, password, navigation }) => {
           //   alert("Account Created Succesfuly");
           //   console.log("Account Created Succesfuly");
           // }
+        }}
+        onPressOut={() => {
+          Animated.timing(scale, {
+            duration: 300,
+            toValue: 1,
+            useNativeDriver: true,
+          }).start();
+        }}
+        onPressIn={async () => {
+          Animated.timing(scale, {
+            duration: 200,
+            toValue: 0.85,
+            useNativeDriver: true,
+          }).start();
         }}
       >
         <Text style={styles.registerButtonText}>Register</Text>
