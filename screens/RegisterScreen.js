@@ -6,7 +6,7 @@ import Header from "../components/Header";
 import Inputs from "../components/Inputs";
 import Footer from "../components/Footer";
 
-const RegisterScreen = () => {
+const RegisterScreen = ({ navigation }) => {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
@@ -22,7 +22,12 @@ const RegisterScreen = () => {
         email={email}
         setEmail={setEmail}
       />
-      <Footer email={email} password={password} name={name} />
+      <Footer
+        email={email}
+        password={password}
+        name={name}
+        navigation={navigation}
+      />
       <StatusBar style="auto" />
     </View>
   );

@@ -2,17 +2,17 @@ import {
   View,
   Text,
   StyleSheet,
-  TouchableOpacity,
+  Pressable,
   Alert,
   Animated,
 } from "react-native";
 import axios from "axios";
-import react, { useState } from "react";
+import { useState } from "react";
 
-const AnimatedTouchable = Animated.createAnimatedComponent(TouchableOpacity);
+const AnimatedTouchable = Animated.createAnimatedComponent(Pressable);
 
 const Footer = ({ email, name, password, navigation }) => {
-  const [scale] = useState(new Animated.Value(1));
+  var [scale] = useState(new Animated.Value(1));
 
   return (
     <View style={styles.registerBtnView}>
@@ -28,13 +28,20 @@ const Footer = ({ email, name, password, navigation }) => {
           borderRadius: 200,
           transform: [{ scale }],
         }}
-        onpress={() => {
+        onPress={() => {
+          let inAlert = false;
           if (name === "") {
+            inAlert = true;
             Alert.alert("name is required");
           } else if (!email.includes("@") || !email.includes(".com")) {
+            inAlert = true;
             Alert.alert("email is invalid");
           } else if (password === "") {
+            inAlert = true;
             Alert.alert("password is required");
+          }
+          if (inAlert === false) {
+            navigation.navigate("Login");
           }
           // const response = await axios.post(
           //   "http://localhost:5000/api/register",
@@ -76,7 +83,7 @@ const styles = StyleSheet.create({
     marginTop: 60,
     backgroundColor: "purple",
     width: 400,
-    height: 70,
+    height: 60,
     alignItems: "center",
     justifyContent: "center",
     borderRadius: 200,
