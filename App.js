@@ -1,7 +1,9 @@
 import RegisterScreen from "./screens/RegisterScreen";
+import LoginScreen from "./screens/LoginScreen";
+import HomeScreen from "./screens/HomeScreen";
 import { NavigationContainer } from "@react-navigation/native";
+
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { Text } from "react-native";
 
 const Stack = createNativeStackNavigator();
 
@@ -9,8 +11,12 @@ const ReturnRegisterScreen = ({ navigation }) => {
   return <RegisterScreen navigation={navigation} />;
 };
 
-const LoginScreen = () => {
-  return <Text>Hello Login</Text>;
+const ReturnLoginScreen = () => {
+  return <LoginScreen />;
+};
+
+const ReturnHomeScreen = () => {
+  return <HomeScreen />;
 };
 
 export default function App() {
@@ -18,7 +24,8 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen name="Register" component={ReturnRegisterScreen} />
-        <Stack.Screen name="Login" component={LoginScreen} />
+        <Stack.Screen name="Login" component={ReturnLoginScreen} />
+        <Stack.Screen name="Home" component={ReturnHomeScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

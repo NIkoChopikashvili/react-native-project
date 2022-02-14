@@ -11,7 +11,7 @@ import { useState } from "react";
 
 const AnimatedTouchable = Animated.createAnimatedComponent(Pressable);
 
-const Footer = ({ email, name, password, navigation }) => {
+const Footer = ({ email, name, password, navigation, btnText }) => {
   var [scale] = useState(new Animated.Value(1));
 
   return (
@@ -41,7 +41,7 @@ const Footer = ({ email, name, password, navigation }) => {
             Alert.alert("password is required");
           }
           if (inAlert === false) {
-            navigation.navigate("Login");
+            navigation.navigate("Home");
           }
           // const response = await axios.post(
           //   "http://localhost:5000/api/register",
@@ -72,7 +72,7 @@ const Footer = ({ email, name, password, navigation }) => {
           }).start();
         }}
       >
-        <Text style={styles.registerButtonText}>Register</Text>
+        <Text style={styles.registerButtonText}>{btnText}</Text>
       </AnimatedTouchable>
     </View>
   );

@@ -1,14 +1,24 @@
 import { Text, View, TouchableOpacity, StyleSheet } from "react-native";
 
-export default function Header() {
+export default function Header({ authBtn, authText, navigation }) {
   return (
     <View style={styles.pageHeader}>
-      <TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => {
+          console.log(navigation);
+          navigation.push("Register");
+        }}
+      >
         <Text style={styles.XParent}>X</Text>
       </TouchableOpacity>
-      <Text style={styles.pageHeaderText}>Sign Up</Text>
-      <TouchableOpacity>
-        <Text style={styles.loginText}>Login</Text>
+      <Text style={styles.pageHeaderText}>{authText}</Text>
+      <TouchableOpacity
+        onPress={() => {
+          console.log(navigation);
+          navigation.push("Login");
+        }}
+      >
+        <Text style={styles.loginText}>{authBtn}</Text>
       </TouchableOpacity>
     </View>
   );

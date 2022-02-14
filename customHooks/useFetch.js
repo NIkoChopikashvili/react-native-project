@@ -7,12 +7,11 @@ const useFetch = (url) => {
   useEffect(async () => {
     const response = await fetch(url);
     const data = await response.json();
-    const item = data.results;
-    setData(item);
+    setData(data);
     setLoading(false);
-  });
+  }, []);
 
   return { data, loading };
 };
 
-export default RegisterScreen;
+export default useFetch;

@@ -13,7 +13,7 @@ const RegisterScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <Header />
+      <Header authBtn="Login" authText="Register" navigation={navigation} />
       <Inputs
         name={name}
         setName={setName}
@@ -27,6 +27,7 @@ const RegisterScreen = ({ navigation }) => {
         password={password}
         name={name}
         navigation={navigation}
+        btnText="Register"
       />
       <StatusBar style="auto" />
     </View>
