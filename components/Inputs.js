@@ -1,5 +1,7 @@
 import { View, StyleSheet, Text } from "react-native";
 import { TextInput, HelperText } from "react-native-paper";
+import { useState } from "react";
+
 export default function Inputs({
   name,
   setName,
@@ -8,20 +10,33 @@ export default function Inputs({
   email,
   setEmail,
 }) {
+  const [passwordFocus, setPasswordFocus] = useState(false);
+  const [emailFocus, setEmailFocus] = useState(false);
+  const [nameFoucs, setNameFocus] = useState(false);
+
   const emailErrors = () => {
-    return !email.includes("@") || !email.includes(".com");
+    if (emailFocus === true) {
+      if (!email.includes("@") || !email.includes(".com")) {
+        return true;
+      }
+    }
+    return false;
   };
 
   const passwordErrors = () => {
-    if (password === "") {
-      return true;
+    if (passwordFocus === true) {
+      if (password === "") {
+        return true;
+      }
     }
     return false;
   };
 
   const nameErrors = () => {
-    if (name === "") {
-      return true;
+    if (nameFoucs === true) {
+      if (name === "") {
+        return true;
+      }
     }
     return false;
   };
@@ -33,6 +48,7 @@ export default function Inputs({
         vaule={name}
         onChangeText={setName}
         placeholder="Name"
+        onFocus={() => setNameFocus(true)}
       />
       <HelperText type="error" visible={nameErrors()}>
         Name should not be empty!
@@ -42,6 +58,7 @@ export default function Inputs({
         value={email}
         onChangeText={setEmail}
         placeholder="Email"
+        onFocus={() => setEmailFocus(true)}
       />
       <HelperText type="error" visible={emailErrors()}>
         Email address is invalid!
@@ -52,6 +69,7 @@ export default function Inputs({
         value={password}
         onChangeText={setPassword}
         placeholder="Password"
+        onFocus={() => setPasswordFocus(true)}
       />
       <HelperText type="error" visible={passwordErrors()}>
         Password should not be empty
