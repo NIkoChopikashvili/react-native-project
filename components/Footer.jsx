@@ -87,7 +87,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     borderRadius: 200,
-    // transform: [{ scale }],
   },
   registerButtonText: {
     color: "white",
