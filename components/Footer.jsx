@@ -54,7 +54,6 @@ const Footer = ({ email, name, password, navigation, btnText }) => {
 
           // if (response.data.message === "success") {
           //   alert("Account Created Succesfuly");
-          //   console.log("Account Created Succesfuly");
           // }
         }}
         onPressOut={() => {

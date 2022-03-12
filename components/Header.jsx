@@ -14,7 +14,6 @@ export default function Header({ authBtn, authText, navigation }) {
       <Text style={styles.pageHeaderText}>{authText}</Text>
       <TouchableOpacity
         onPress={() => {
-          console.log(navigation);
           navigation.push("Login");
         }}
       >
