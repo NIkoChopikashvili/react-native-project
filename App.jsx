@@ -7,25 +7,13 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 const Stack = createNativeStackNavigator();
 
-const ReturnRegisterScreen = ({ navigation }) => {
-  return <RegisterScreen navigation={navigation} />;
-};
-
-const ReturnLoginScreen = () => {
-  return <LoginScreen />;
-};
-
-const ReturnHomeScreen = () => {
-  return <HomeScreen />;
-};
-
 export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="Register" component={ReturnRegisterScreen} />
-        <Stack.Screen name="Login" component={ReturnLoginScreen} />
-        <Stack.Screen name="Home" component={ReturnHomeScreen} />
+        <Stack.Screen name="Register" component={RegisterScreen} />
+        <Stack.Screen name="Login" component={LoginScreen} />
+        <Stack.Screen name="Home" component={HomeScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
