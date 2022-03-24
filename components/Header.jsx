@@ -5,8 +5,7 @@ export default function Header({ authBtn, authText, navigation }) {
     <View style={styles.pageHeader}>
       <TouchableOpacity
         onPress={() => {
-          console.log(navigation);
-          navigation.push("Register");
+          navigation.goBack("Register");
         }}
       >
         <Text style={styles.XParent}>X</Text>
@@ -14,7 +13,11 @@ export default function Header({ authBtn, authText, navigation }) {
       <Text style={styles.pageHeaderText}>{authText}</Text>
       <TouchableOpacity
         onPress={() => {
-          navigation.push("Login");
+          if (authBtn === "Login") {
+            navigation.push("Login");
+          } else if (authBtn === "Register") {
+            navigation.goBack("Register");
+          }
         }}
       >
         <Text style={styles.loginText}>{authBtn}</Text>

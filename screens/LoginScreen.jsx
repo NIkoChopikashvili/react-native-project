@@ -26,7 +26,7 @@ const LoginScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <Header authBtn="Register" authText="Login" />
+      <Header authBtn="Register" authText="Login" navigation={navigation} />
       <View style={styles.inputsParent}>
         <TextInput
           style={styles.nameInput}
